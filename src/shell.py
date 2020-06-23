@@ -1,5 +1,4 @@
 import threading
-import termcolor
 import subprocess, platform
 import sys, tty, termios
 
