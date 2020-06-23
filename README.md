@@ -1,3 +1,10 @@
 # Terminal-Tkinter
-This is a library that makes tkinter apps run in terminal
+This is a library that makes tkinter apps run in terminal.
+
 Currently it only runs on Linux terminal.
+
+
+# How to run
+To run the example program:
+* Open the Linux terminal
+* Type in `python3 example.py`
