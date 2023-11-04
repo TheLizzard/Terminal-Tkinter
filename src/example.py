@@ -1,4 +1,4 @@
-from _tkinter import Tk, Canvas
+from mytkinter import Tk, Canvas
 
 import time
 from random import randint
@@ -17,7 +17,7 @@ class App:
         self.new_goal()
 
         self.root = Tk()
-        self.master = Canvas(self.root, height=height, width=width)
+        self.master = Canvas(self.root, height=height, width=width, bg="black")
         self.master.grid(row=0, column=0)
         self.root.bind("<Key>", self.key_pressed)
         self.display()
@@ -108,3 +108,5 @@ class App:
 game = App()
 while not game.game_over:
     game.update()
+
+# https://www.nutc.site/
