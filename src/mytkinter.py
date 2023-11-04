@@ -335,6 +335,8 @@ class Tk(GridManager):
             raise TclError(5)
         if string.count("+") not in (0, 2):
             raise TclError(2)
+        if string.count("x") not in (0, 1):
+            raise TclError(2)
         if string.count("+") == 2:
             part1, pos_x, pos_y = string.split("+")
             self.position = (int(pos_x), int(pos_y))
@@ -510,6 +512,7 @@ class Canvas(Widget):
             self.PIXELS_PER_CHAR_Y = PIXELS_PER_CHAR[1]
 
         super().__init__(master)
+        self.bg = bg or "white"
         self.sprite_number = 0
         self.sprites = []
         self.sprites_args = {}
@@ -520,6 +523,11 @@ class Canvas(Widget):
     def write(self, min, max):
         start_x = self.position[0]+self.master.position[0]+1
         start_y = self.position[1]+self.master.position[1]+3
+        if self.bg != "black":
+            bg = shell.colours_only(shell.colour_to_code(self.bg, fg=None))
+            for i in range(min[0], max[0]+1):
+                for j in range(min[1], max[1]+1):
+                    WRITING_CURSOR.set(i, j, "█", min, max, bg)
         for sprite in self.sprites[::-1]:
             args = self.sprites_args[sprite]
             fill = args["colour"]
@@ -564,6 +572,8 @@ class Canvas(Widget):
 if __name__ == "__main__":
     root = Tk()
     root.title("Not tk")
-    l = Label(root, text="Hello World")
+    l = Label(root, text="Hello")
     l.grid(row=0, column=0)
-    root.update()
+    l = Label(root, text="world")
+    l.grid(row=1, column=1)
+    root.mainloop()
